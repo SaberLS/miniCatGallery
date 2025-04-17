@@ -11,8 +11,8 @@ https://api.thecatapi.com/v1/images/search?limit=6
 
 ### Wymagania techniczne:
 
-- [ ] Vue 3 / React
-- [ ] Plik CatService.js do obsługi API
+- [x] Vue 3 / React
+- [x] Plik CatService.js do obsługi API
 - [ ] Główny komponent + podkomponenty (galeria i modal)
 - [ ] Prosty, estetyczny design
 - [ ] Nie używaj bibliotek UI, takich jak Vuetify
