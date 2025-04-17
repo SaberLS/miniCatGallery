@@ -1,0 +1,83 @@
+.hidden {
+  display: none !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+
+.loader {
+  height: 100%;
+  width: 100%;
+  margin: auto;
+}
+
+.lds-ellipsis {
+  /*  */
+  --size: 1ch; /* diameter of single ball */
+  --distance: 1ch; /* distance between ballz */
+
+  --color: rgb(255, 255, 255); /* change color here */
+
+  --duration: 0.3s; /* duration of animation */
+  --timing-function: cubic-bezier(0.5, 0, 0, 0);
+
+  position: relative;
+  color: var(--color);
+  width: calc((var(--size) * 3) + (2 * var(--distance)));
+  height: var(--size);
+}
+
+.lds-ellipsis,
+.lds-ellipsis div {
+  box-sizing: border-box;
+}
+
+.lds-ellipsis div {
+  position: absolute;
+  width: var(--size);
+  height: var(--size);
+  border-radius: 50%;
+  background: var(--color);
+  animation-duration: var(--duration);
+  animation-iteration-count: infinite;
+  animation-timing-function: var(--timing-function);
+}
+.lds-ellipsis div:nth-child(1) {
+  left: 0;
+  animation-name: lds-ellipsis1;
+}
+.lds-ellipsis div:nth-child(2) {
+  left: 0;
+  animation-name: lds-ellipsis2;
+}
+.lds-ellipsis div:nth-child(3) {
+  left: calc(var(--size) + var(--distance));
+  animation-name: lds-ellipsis2;
+}
+.lds-ellipsis div:nth-child(4) {
+  left: calc((var(--size) + var(--distance)) * 2);
+  animation-name: lds-ellipsis3;
+}
+@keyframes lds-ellipsis1 {
+  from {
+    transform: scale(0);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+@keyframes lds-ellipsis3 {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(0);
+  }
+}
+@keyframes lds-ellipsis2 {
+  from {
+    transform: translate(0, 0);
+  }
+  to {
+    transform: translate(calc(var(--size) + var(--distance)), 0);
+  }
+}
