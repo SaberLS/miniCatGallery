@@ -15,7 +15,7 @@
   --size: 1ch; /* diameter of single ball */
   --distance: 1ch; /* distance between ballz */
 
-  --color: rgb(255, 255, 255); /* change color here */
+  --color: var(--text-color); /* change color here */
 
   --duration: 0.3s; /* duration of animation */
   --timing-function: cubic-bezier(0.5, 0, 0, 0);
