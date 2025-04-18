@@ -22,24 +22,24 @@ function splitIntoParts(arr, parts) {
   return result;
 }
 
-export default function Gallery({ images, columnsWidth }) {
+export default function Gallery({ images, columnsAmount }) {
   const [columns, setColumns] = useState([]);
-  const [widths, setWidths] = useState([]);
+  const [breakPoints, setBreakPoints] = useState([]);
   const screenSize = useScreenSize();
 
   useEffect(() => {
-    setWidths(
-      Object.keys(columnsWidth)
+    setBreakPoints(
+      Object.keys(columnsAmount)
         .map((key) => Number(key))
         .sort((l, r) => r - l)
     );
-    console.log("setWidths");
-  }, [columnsWidth]);
+    console.log("setBreakPoints");
+  }, [columnsAmount]);
 
   useEffect(() => {
-    let closest = Infinity;
-    for (let i = 0; i < widths.length; ++i) {
-      const current = widths[i];
+    let closest = columnsAmount[0];
+    for (let i = 1; i < breakPoints.length; ++i) {
+      const current = breakPoints[i];
 
       if (current <= screenSize.width) {
         closest = current;
@@ -47,15 +47,18 @@ export default function Gallery({ images, columnsWidth }) {
       }
     }
 
-    const columnsAmount =
-      columnsWidth[closest] > images.length
+    console.log(closest);
+    console.log({ images, columnsAmount });
+
+    const columnsToShow =
+      columnsAmount[closest] > images.length
         ? images.length
-        : columnsWidth[closest];
+        : columnsAmount[closest];
 
-    console.log({ columnsAmount, columnsWidth });
+    console.log({ columnsToShow, columnsAmount });
 
-    setColumns(splitIntoParts(images, columnsAmount));
-  }, [widths, screenSize]);
+    setColumns(splitIntoParts(images, columnsToShow));
+  }, [screenSize, breakPoints]);
 
   return (
     <div className="gallery">
