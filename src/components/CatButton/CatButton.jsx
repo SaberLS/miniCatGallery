@@ -1,6 +1,6 @@
 import React from "react";
 import "./CatButton.css";
-import Loader from "./Loader";
+import Loader from "./Loader/Loader";
 
 export default function CatButton({ onClick, message, loading }) {
   return (
