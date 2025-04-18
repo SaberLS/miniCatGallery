@@ -13,16 +13,16 @@ https://api.thecatapi.com/v1/images/search?limit=6
 
 - [x] Vue 3 / React
 - [x] Plik CatService.js do obsługi API
-- [ ] Główny komponent + podkomponenty (galeria i modal)
-- [ ] Prosty, estetyczny design
-- [ ] Nie używaj bibliotek UI, takich jak Vuetify
+- [x] Główny komponent + podkomponenty (galeria i modal)
+- [x] Prosty, estetyczny design
+- [x] Nie używaj bibliotek UI, takich jak Vuetify
 - [ ] Udostępnij projekt na GitHub
 
 ### Dodatkowe atuty (opcjonalne):
 
-- [ ] Loader podczas ładowania
+- [x] Loader podczas ładowania
 - [ ] Animacje przy wczytywaniu zdjęć
-- [ ] Responsywny układ
+- [x] Responsywny układ
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
