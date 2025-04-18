@@ -33,6 +33,7 @@ export default function Gallery({ images, columnsWidth }) {
         .map((key) => Number(key))
         .sort((l, r) => r - l)
     );
+    console.log("setWidths");
   }, [columnsWidth]);
 
   useEffect(() => {
@@ -46,11 +47,12 @@ export default function Gallery({ images, columnsWidth }) {
       }
     }
 
-    let width = columnsWidth[closest];
-    const columnsAmount = Math.floor(screenSize.width / width);
+    const columnsAmount =
+      columnsWidth[closest] > images.length
+        ? images.length
+        : columnsWidth[closest];
 
-    console.log({ width, columnsAmount, columnsWidth });
-    if (columnsAmount > images.length) width = images.length;
+    console.log({ columnsAmount, columnsWidth });
 
     setColumns(splitIntoParts(images, columnsAmount));
   }, [widths, screenSize]);

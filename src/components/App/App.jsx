@@ -44,7 +44,7 @@ function App() {
   }
 
   useEffect(() => {
-    (() => getCats())();
+    getCats();
   }, []);
 
   return (
@@ -52,18 +52,15 @@ function App() {
       <Modal active={showModal} image={modalSrc} close={modalTurnOff} />
       <Gallery
         columnsWidth={{
-          3000: 1500,
-          2000: 1000,
-          1000: 500,
-          500: 250,
-          400: 200,
-          300: 150,
-          0: 100,
+          3000: cats.length,
+          2000: 3,
+          300: 2,
+          0: 1,
         }}
         images={cats}
       ></Gallery>
       <FetchButton
-        onClick={getCats}
+        onClick={() => getCats()}
         loading={loading}
         message={"Refresh Cats"}
       />
