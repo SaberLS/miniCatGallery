@@ -13,6 +13,6 @@ export default function splitIntoParts(arr, parts) {
     if (extra > 0) extra--;
   }
 
-  console.log(result);
+  // console.log(result);
   return result;
 }

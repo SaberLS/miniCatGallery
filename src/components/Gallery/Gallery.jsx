@@ -21,7 +21,7 @@ export default function Gallery({ images, columnsAmount }) {
     const breakPoints = mapBreakPoints;
     let i = 0;
     for (i; i < breakPoints.length; ++i) {
-      console.log(breakPoints[i], screenSize.width);
+      // console.log(breakPoints[i], screenSize.width);
       if (breakPoints[i].breakOn <= screenSize.width) {
         break;
       }
