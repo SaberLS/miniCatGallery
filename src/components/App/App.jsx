@@ -25,6 +25,8 @@ function App() {
     setLoading(true);
     const newCats = await fetchCats(catAmount);
 
+    if (newCats.length === 0) return 0;
+
     // Get pictures with the highest quality
     newCats.sort((l, r) => r.height * r.width - l.height * r.width);
 
@@ -51,7 +53,7 @@ function App() {
     <>
       <Modal active={showModal} image={modalSrc} close={modalTurnOff} />
       <Gallery
-        columnsWidth={{
+        columnsAmount={{
           3000: cats.length,
           2000: 3,
           300: 2,
