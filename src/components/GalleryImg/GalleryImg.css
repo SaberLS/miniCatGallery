@@ -4,10 +4,5 @@
   margin: auto;
   width: 100%;
   aspect-ratio: 1/1;
-}
-
-@media only screen and (max-width: 400px) {
-  .gallery-img {
-    object-fit: cover;
-  }
+  transition: all 0.1ms ease;
 }

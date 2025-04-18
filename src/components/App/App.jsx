@@ -6,6 +6,13 @@ import Gallery from "../Gallery/Gallery";
 import preloadImage from "../preloadImage.mjs";
 import Modal from "../Modal/Modal";
 
+const columns = {
+  3000: 6,
+  2000: 3,
+  300: 2,
+  0: 1,
+};
+
 function App() {
   const [loading, setLoading] = useState(false);
   const [cats, setCats] = useState([]);
@@ -52,15 +59,7 @@ function App() {
   return (
     <>
       <Modal active={showModal} image={modalSrc} close={modalTurnOff} />
-      <Gallery
-        columnsAmount={{
-          3000: cats.length,
-          2000: 3,
-          300: 2,
-          0: 1,
-        }}
-        images={cats}
-      ></Gallery>
+      <Gallery columnsAmount={columns} images={cats}></Gallery>
       <FetchButton
         onClick={() => getCats()}
         loading={loading}

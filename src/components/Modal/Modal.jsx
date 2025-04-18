@@ -9,13 +9,10 @@ export default function Modal({ active, image, close }) {
       <div
         className={`modal ${open ? "" : "close"}`}
         onClick={() => {
-          console.log("click");
-          document.body.classList.add("no-scroll");
           setOpen(false);
           setTimeout(() => {
             close();
             setOpen(true);
-            document.body.classList.remove("no-scroll");
           }, 350);
         }}
       >

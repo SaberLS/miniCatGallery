@@ -1,67 +1,56 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import "./Gallery.css";
 import useScreenSize from "../useScreenSize.mjs";
 import GalleryImg from "../GalleryImg/GalleryImg";
-
-function splitIntoParts(arr, parts) {
-  const result = [];
-
-  const len = arr.length;
-  const baseSize = Math.floor(len / parts);
-  let extra = len % parts;
-  let start = 0;
-
-  for (let i = 0; i < parts; i++) {
-    const size = baseSize + (extra > 0 ? 1 : 0);
-    result.push(arr.slice(start, (start += size)));
-
-    if (extra > 0) extra--;
-  }
-
-  console.log(result);
-  return result;
-}
+import splitIntoParts from "../splitIntoParts.mjs";
 
 export default function Gallery({ images, columnsAmount }) {
   const [columns, setColumns] = useState([]);
-  const [breakPoints, setBreakPoints] = useState([]);
   const screenSize = useScreenSize();
+  const [fade, setFade] = useState(true);
 
-  useEffect(() => {
-    setBreakPoints(
-      Object.keys(columnsAmount)
-        .map((key) => Number(key))
-        .sort((l, r) => r - l)
-    );
-    console.log("setBreakPoints");
+  const mapBreakPoints = useMemo(() => {
+    return Object.keys(columnsAmount)
+      .map((key) => {
+        return { breakOn: Number(key), columnsAmount: columnsAmount[key] };
+      })
+      .sort((l, r) => r.breakOn - l.breakOn);
   }, [columnsAmount]);
 
-  useEffect(() => {
-    let closest = columnsAmount[0];
-    for (let i = 1; i < breakPoints.length; ++i) {
-      const current = breakPoints[i];
-
-      if (current <= screenSize.width) {
-        closest = current;
+  const getBreakPoint = useMemo(() => {
+    const breakPoints = mapBreakPoints;
+    let i = 0;
+    for (i; i < breakPoints.length; ++i) {
+      console.log(breakPoints[i], screenSize.width);
+      if (breakPoints[i].breakOn <= screenSize.width) {
         break;
       }
     }
+    return breakPoints[i];
+  }, [mapBreakPoints, screenSize]);
 
-    console.log(closest);
-    console.log({ images, columnsAmount });
+  const splitIntoColumns = useMemo(() => {
+    const { columnsAmount } = getBreakPoint;
+    return splitIntoParts(
+      images,
+      columnsAmount > images.length ? images.length : columnsAmount
+    );
+  }, [images, getBreakPoint]);
 
-    const columnsToShow =
-      columnsAmount[closest] > images.length
-        ? images.length
-        : columnsAmount[closest];
+  useEffect(() => {
+    setFade(false);
+    const t = setTimeout(() => {
+      const newColumns = splitIntoColumns;
 
-    console.log({ columnsToShow, columnsAmount });
+      setFade(true);
+      setColumns(newColumns);
+    }, 350);
 
-    setColumns(splitIntoParts(images, columnsToShow));
-  }, [screenSize, breakPoints]);
+    return () => clearTimeout(t);
+  }, [splitIntoColumns]);
 
   return (
-    <div className="gallery">
+    <div className={`gallery ${fade ? "fade-in" : "fade-out"}`}>
       {columns.map((column, i) => (
         <div key={i} className="column">
           {column.map((image, i) => (
