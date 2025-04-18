@@ -1,8 +1,6 @@
 .gallery-img {
-  transition: all ease-in-out 0.8ms;
   object-fit: cover;
   margin: auto;
   width: 100%;
   aspect-ratio: 1/1;
-  transition: all 0.1ms ease;
 }

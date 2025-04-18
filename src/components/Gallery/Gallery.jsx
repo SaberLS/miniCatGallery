@@ -39,9 +39,9 @@ export default function Gallery({ images, columnsAmount }) {
 
   useEffect(() => {
     setFade(false);
-    const t = setTimeout(() => {
-      const newColumns = splitIntoColumns;
+    const newColumns = splitIntoColumns;
 
+    const t = setTimeout(() => {
       setFade(true);
       setColumns(newColumns);
     }, 350);
@@ -53,13 +53,13 @@ export default function Gallery({ images, columnsAmount }) {
     <div className={`gallery ${fade ? "fade-in" : "fade-out"}`}>
       {columns.map((column, i) => (
         <div key={i} className="column">
-          {column.map((image, i) => (
+          {column.map((image, j) => (
             <GalleryImg
               key={image.id}
               shareHeightWith={column.length}
               onClick={image.onClick}
               src={image.url}
-              alt={`${i}`}
+              alt={`random cat ${i}${j}`}
             />
           ))}
         </div>

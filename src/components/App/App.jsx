@@ -8,7 +8,7 @@ import Modal from "../Modal/Modal";
 
 const columns = {
   3000: 6,
-  2000: 3,
+  600: 3,
   300: 2,
   0: 1,
 };
@@ -54,6 +54,7 @@ function App() {
 
   useEffect(() => {
     getCats();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
