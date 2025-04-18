@@ -4,10 +4,22 @@ import "./App.css";
 import FetchButton from "../CatButton/CatButton";
 import Gallery from "../Gallery/Gallery";
 import preloadImage from "../preloadImage.mjs";
+import Modal from "../Modal/Modal";
 
 function App() {
   const [loading, setLoading] = useState(false);
   const [cats, setCats] = useState([]);
+  const [showModal, setShowModal] = useState(false);
+  const [modalSrc, setModalSrc] = useState("");
+
+  const modalTurnOn = (image) => {
+    setShowModal(true);
+    setModalSrc(image);
+  };
+  const modalTurnOff = () => {
+    setShowModal(false);
+    setModalSrc("");
+  };
 
   async function getCats(catAmount) {
     setLoading(true);
@@ -19,17 +31,25 @@ function App() {
     const bestCats = newCats.slice(0, 6);
     await Promise.all(bestCats.map((cat) => preloadImage(cat)));
 
-    setCats(bestCats);
+    setCats(
+      bestCats.map((cat) => {
+        return {
+          ...cat,
+          onClick: modalTurnOn,
+        };
+      })
+    );
     // console.log({ bestCats });
     setLoading(false);
   }
 
   useEffect(() => {
-    getCats();
+    (() => getCats())();
   }, []);
 
   return (
     <>
+      <Modal active={showModal} image={modalSrc} close={modalTurnOff} />
       <Gallery
         columnsWidth={{
           3000: 1500,

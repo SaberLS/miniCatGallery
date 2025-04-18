@@ -53,7 +53,7 @@ export default function Gallery({ images, columnsWidth }) {
     if (columnsAmount > images.length) width = images.length;
 
     setColumns(splitIntoParts(images, columnsAmount));
-  }, [widths, images, screenSize]);
+  }, [widths, screenSize]);
 
   return (
     <div className="gallery">
@@ -63,6 +63,7 @@ export default function Gallery({ images, columnsWidth }) {
             <GalleryImg
               key={image.id}
               shareHeightWith={column.length}
+              onClick={image.onClick}
               src={image.url}
               alt={`${i}`}
             />

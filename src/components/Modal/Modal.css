@@ -1,0 +1,60 @@
+.no-scroll {
+  overflow: hidden;
+}
+
+.modal {
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  top: 0;
+  left: 0;
+  opacity: 1;
+  transform: scale(1);
+
+  animation: shoowIn 0.3s ease-in;
+  z-index: 100;
+}
+
+.modal.close {
+  animation: shoowOut 0.3s ease-out;
+  left: 100%;
+  opacity: 0;
+  transform: scale(0.8);
+}
+
+.modal-hero {
+  border: none;
+  max-width: 80%;
+  max-height: 80%;
+}
+
+@keyframes shoowIn {
+  from {
+    left: -100%;
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  to {
+    left: 0;
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes shoowOut {
+  from {
+    left: 0;
+    opacity: 1;
+    transform: scale(1);
+  }
+  to {
+    left: 100%;
+    opacity: 0;
+    transform: scale(0.8);
+  }
+}

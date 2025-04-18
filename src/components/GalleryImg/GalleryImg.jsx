@@ -1,8 +1,7 @@
 import React from "react";
 import "./GalleryImg.css";
-import useScreenSize from "../useScreenSize.mjs";
 
-export default function GalleryImg({ src, alt, shareHeightWith }) {
+export default function GalleryImg({ src, alt, shareHeightWith, onClick }) {
   return (
     <img
       className="gallery-img"
@@ -11,6 +10,7 @@ export default function GalleryImg({ src, alt, shareHeightWith }) {
       style={{
         maxHeight: 100 / shareHeightWith + "%",
       }}
+      onClick={() => onClick(src)}
     />
   );
 }
