@@ -16,7 +16,7 @@ export default function Modal({ active, image, close }) {
             close();
             setOpen(true);
             document.body.classList.remove("no-scroll");
-          }, 300);
+          }, 350);
         }}
       >
         <img
