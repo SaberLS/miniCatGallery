@@ -41,3 +41,7 @@ Aplikacja korzysta z publicznego API: [thecatapi](https://api.thecatapi.com/v1/i
 - [x] Loader podczas ładowania
 - [x] Animacje przy wczytywaniu zdjęć
 - [x] Responsywny układ
+
+#### Lighthouse
+
+![Lighthouse score](./ReadmeResources/Lighthouse.png)
