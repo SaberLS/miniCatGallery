@@ -1,13 +1,31 @@
-# React + Vite
+# 🐱 miniCatGallery
 
-## Wymagania
+Prosty, responsywny frontendowy projekt galerii zdjęć kotów — wykonany w React, z animacjami oraz modalami. Zdjęcia są dynamicznie ładowane z darmowego API i prezentowane w kolumnowym układzie.
 
-1. zobaczyć siatkę z 6 losowymi zdjęciami kotów
-2. kliknąć dowolne zdjęcie, aby otworzyć je w powiększeniu (modale)
-3. odświeżyć galerię przyciskiem „Refresh cats”
+Aplikacja korzysta z publicznego API: [thecatapi](https://api.thecatapi.com/v1/images/search?limit=6)
 
-API ze zdjęciami kotów:
-https://api.thecatapi.com/v1/images/search?limit=6
+🔗 **Live demo:** [minicatgallery.onrender.com](https://minicatgallery.onrender.com)
+
+---
+
+## 🧰 Stack technologiczny
+
+- ⚛️ **React**
+- 🎨 **CSS**
+- 🎬 **Animacje CSS**
+- 📦 **Vite**
+
+---
+
+## ✨ Funkcjonalności
+
+- 📸 Losowe zdjęcia kotów za każdym razem, gdy ładujesz stronę lub klikniesz „Refresh cats”
+- 🖼️ Klikalne zdjęcia — każde otwiera się w modalu z możliwością przewijania w lewo/prawo
+- 🔁 Intuicyjny przycisk do odświeżania galerii
+- 📱 Pełna responsywność (działa na telefonie, tablecie i desktopie)
+- 🎬 Animacje w modalu przy otwieraniu i zamykaniu
+
+---
 
 ### Wymagania techniczne:
 
