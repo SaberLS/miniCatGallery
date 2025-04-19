@@ -9,7 +9,13 @@ export default function Modal({ active, image, images, close }) {
   const [shoowIn, setShoowIn] = useState(true);
   const timeoutID = useRef();
 
-  useEffect(() => {}, [image, images]);
+  useEffect(() => {
+    setCurrent(image);
+  }, [image]);
+
+  useEffect(() => {
+    setCurrent(0);
+  }, [images]);
 
   const move = (length, by = 0, current = 0) => {
     if (by === 0) return current;
