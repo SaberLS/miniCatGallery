@@ -33,6 +33,46 @@
   cursor: default;
 }
 
+.shoowIn {
+  animation: shoowIn 0.3s ease-in;
+  opacity: 1;
+}
+
+.shoowOut {
+  animation: shoowOut 0.3s ease-in;
+  opacity: 0;
+}
+
+.modal-btns .cat-btn {
+  top: calc(50% - 10ch);
+}
+
+.modal-btns :last-child {
+  left: calc(100% - 10px - 10ch);
+}
+
+@media (max-width: 800px) {
+  .modal-btns :last-child {
+    left: calc(100% - 10ch);
+  }
+}
+
+@media (max-width: 350px) {
+  .modal-btns .cat-btn {
+    background: none;
+    border: none;
+    width: 50px;
+    left: 0px;
+  }
+  .cat-btn:hover {
+    background-color: none;
+    box-shadow: none;
+  }
+  .modal-btns :last-child {
+    left: calc(100% - 50px);
+  }
+}
+
 @keyframes shoowIn {
   from {
     left: -100%;

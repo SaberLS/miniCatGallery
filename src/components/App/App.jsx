@@ -1,15 +1,14 @@
 import { useState, useEffect } from "react";
 import fetchCats from "../../services/CatService.mjs";
 import "./App.css";
-import FetchButton from "../CatButton/CatButton";
+import CatButton from "../CatButton/CatButton";
 import Gallery from "../Gallery/Gallery";
 import preloadImage from "../preloadImage.mjs";
 import Modal from "../Modal/Modal";
 
 const columns = {
-  600: 3,
-  300: 2,
-  0: 1,
+  300: 3,
+  0: 2,
 };
 
 function App() {
@@ -40,10 +39,10 @@ function App() {
     await Promise.all(bestCats.map((cat) => preloadImage(cat)));
 
     setCats(
-      bestCats.map((cat) => {
+      bestCats.map((cat, i) => {
         return {
           ...cat,
-          onClick: modalTurnOn,
+          onClick: () => modalTurnOn(i),
         };
       })
     );
@@ -58,9 +57,14 @@ function App() {
 
   return (
     <>
-      <Modal active={showModal} image={modalSrc} close={modalTurnOff} />
+      <Modal
+        active={showModal}
+        image={modalSrc}
+        images={cats}
+        close={modalTurnOff}
+      />
       <Gallery columnsAmount={columns} images={cats}></Gallery>
-      <FetchButton
+      <CatButton
         onClick={() => getCats()}
         loading={loading}
         message={"Refresh Cats"}

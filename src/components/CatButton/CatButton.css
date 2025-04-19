@@ -1,5 +1,4 @@
 .cat-btn {
-  border-radius: 100%;
   transition: all 0.3s ease-in-out;
   width: 10ch;
   height: 10ch;
@@ -12,7 +11,7 @@
   font-family: inherit;
   background-color: var(--button-bg);
   border: 3px solid var(--warm-gold-color);
-  padding: 0.6em 1.2em;
+  padding: 0;
   cursor: pointer;
   box-sizing: border-box;
 }
@@ -23,13 +22,24 @@
   transform: scale(1.01);
 }
 
-.cat-btn:active {
-  box-shadow: 5px 10px 5px var(--shadow-color);
-  transform: scale(0.99);
-}
-
 .cat-btn:disabled:hover {
   background-color: var(--button-bg);
   box-shadow: none;
   cursor: default;
+}
+
+@media (max-width: 800px) {
+  .cat-btn {
+    transform: scale(0.8);
+    max-width: 45vw;
+    max-height: 45vw;
+    left: 0px;
+    bottom: 0px;
+  }
+
+  .cat-btn:hover {
+    background-color: var(--hover-bg);
+    box-shadow: 5px 10px 5px var(--shadow-color);
+    transform: scale(0.81);
+  }
 }

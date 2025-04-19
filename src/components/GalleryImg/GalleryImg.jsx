@@ -18,7 +18,7 @@ export default function GalleryImg({
         maxHeight: 100 / shareHeightWith + "%",
         animationDelay: `${fadeDelay}ms`,
       }}
-      onClick={() => onClick(src)}
+      onClick={() => onClick()}
     />
   );
 }
