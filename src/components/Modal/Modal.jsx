@@ -6,7 +6,7 @@ import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 export default function Modal({ active, image, images, close }) {
   const [open, setOpen] = useState(true);
   const [current, setCurrent] = useState(0);
-  const [shoowIn, setShoowIn] = useState(false);
+  const [shoowIn, setShoowIn] = useState(true);
   const timeoutID = useRef();
 
   useEffect(() => {}, [image, images]);
@@ -59,8 +59,8 @@ export default function Modal({ active, image, images, close }) {
           onClick={(e) => e.stopPropagation()}
         />
         <div className="modal-btns" onClick={(e) => e.stopPropagation()}>
-          <CatButton message={<FaArrowLeft />} onClick={left} />
-          <CatButton message={<FaArrowRight />} onClick={right} />
+          <CatButton message={<FaArrowLeft />} onClick={() => left()} />
+          <CatButton message={<FaArrowRight />} onClick={() => right()} />
         </div>
       </div>
     </div>
