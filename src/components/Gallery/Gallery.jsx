@@ -51,8 +51,16 @@ export default function Gallery({ images, columnsAmount }) {
       setColumns(newColumns);
     }, getDelay + 300);
 
+    console.log("images");
     return () => clearTimeout(t);
-  }, [splitIntoColumns, getDelay]);
+  }, [images]);
+
+  useEffect(() => {
+    const newColumns = splitIntoColumns;
+
+    setColumns(newColumns);
+    console.log("screen");
+  }, [screenSize.width]);
 
   return (
     <div className="gallery">
@@ -65,7 +73,7 @@ export default function Gallery({ images, columnsAmount }) {
               {column.map((image, j) => (
                 <GalleryImg
                   fadeTrigger={fade}
-                  fadeDelay={(delay + j * 50) * 10}
+                  fadeDelay={delay + j * 80}
                   key={image.id}
                   shareHeightWith={column.length}
                   onClick={image.onClick}
