@@ -7,7 +7,6 @@ import preloadImage from "../preloadImage.mjs";
 import Modal from "../Modal/Modal";
 
 const columns = {
-  3000: 6,
   600: 3,
   300: 2,
   0: 1,
