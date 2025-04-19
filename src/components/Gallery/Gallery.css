@@ -5,7 +5,6 @@
   width: 100%;
   display: flex;
   flex-direction: row;
-  opacity: 0;
 }
 
 .column {
@@ -13,16 +12,6 @@
   height: 100%;
   flex: 50%;
   flex-direction: column;
-}
-
-.gallery.fade-in {
-  opacity: 1;
-  animation: fadein 0.3s ease-in;
-}
-
-.gallery.fade-out {
-  animation: fadeout 0.3s ease-out;
-  opacity: 0;
 }
 
 @keyframes fadein {

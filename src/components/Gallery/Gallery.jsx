@@ -27,7 +27,7 @@ export default function Gallery({ images, columnsAmount }) {
       }
     }
     return breakPoints[i];
-  }, [mapBreakPoints, screenSize]);
+  }, [mapBreakPoints, screenSize.width]);
 
   const splitIntoColumns = useMemo(() => {
     const { columnsAmount } = getBreakPoint;
@@ -37,6 +37,11 @@ export default function Gallery({ images, columnsAmount }) {
     );
   }, [images, getBreakPoint]);
 
+  const getDelay = useMemo(() => {
+    if (columns.length > 0 && columns[0].length > 0)
+      return ((columns.length - 1) * 10 + (columns[0].length - 1) * 50) * 10;
+  }, [columns]);
+
   useEffect(() => {
     setFade(false);
     const newColumns = splitIntoColumns;
@@ -44,26 +49,34 @@ export default function Gallery({ images, columnsAmount }) {
     const t = setTimeout(() => {
       setFade(true);
       setColumns(newColumns);
-    }, 350);
+    }, getDelay + 300);
 
     return () => clearTimeout(t);
-  }, [splitIntoColumns]);
+  }, [splitIntoColumns, getDelay]);
 
   return (
-    <div className={`gallery ${fade ? "fade-in" : "fade-out"}`}>
-      {columns.map((column, i) => (
-        <div key={i} className="column">
-          {column.map((image, j) => (
-            <GalleryImg
-              key={image.id}
-              shareHeightWith={column.length}
-              onClick={image.onClick}
-              src={image.url}
-              alt={`random cat ${i}${j}`}
-            />
-          ))}
-        </div>
-      ))}
+    <div className="gallery">
+      {(() => {
+        let delay = 0;
+        return columns.map((column, i) => {
+          delay = i * 10;
+          return (
+            <div key={i} className="column">
+              {column.map((image, j) => (
+                <GalleryImg
+                  fadeTrigger={fade}
+                  fadeDelay={(delay + j * 50) * 10}
+                  key={image.id}
+                  shareHeightWith={column.length}
+                  onClick={image.onClick}
+                  src={image.url}
+                  alt={`random cat ${image.id}`}
+                />
+              ))}
+            </div>
+          );
+        });
+      })()}
     </div>
   );
 }
