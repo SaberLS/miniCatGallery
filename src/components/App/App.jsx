@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import fetchCats from "../CatService.mjs";
+import fetchCats from "../../services/CatService.mjs";
 import "./App.css";
 import FetchButton from "../CatButton/CatButton";
 import Gallery from "../Gallery/Gallery";
