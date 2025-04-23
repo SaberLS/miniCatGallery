@@ -8,8 +8,16 @@ export default function splitIntoParts(arr, parts) {
 
   for (let i = 0; i < parts; i++) {
     const size = baseSize + (extra > 0 ? 1 : 0);
-    result.push(arr.slice(start, (start += size)));
+    result.push([]);
 
+    const end = start + size;
+    // console.log({i, size, result, end})
+
+    for(let j = start; j < end; ++j) {
+      result[i].push(j);
+    }
+
+    start = end;
     if (extra > 0) extra--;
   }
 
