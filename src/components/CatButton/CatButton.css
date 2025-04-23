@@ -2,7 +2,7 @@
   transition: all 0.3s ease-in-out;
   width: 10ch;
   height: 10ch;
-  position: absolute;
+  position: fixed;
   bottom: 10px;
   left: 10px;
   z-index: 101;
