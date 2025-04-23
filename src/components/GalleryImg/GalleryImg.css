@@ -6,18 +6,23 @@
   aspect-ratio: 1/1;
   box-sizing: border-box;
   cursor: pointer;
+  opacity: 0;
+  transition: opacity transform box-shadow 0.2s linear;
 }
 
 .fade-in {
-  opacity: 0;
-  animation: fadein 0.3s ease-in;
-  animation-fill-mode: forwards;
+  opacity: 1;
+  animation: fade 0.3s linear;
 }
 
-.fade-out {
-  opacity: 1;
-  animation: fadeout 0.3s ease-out;
-  animation-fill-mode: forwards;
+@keyframes fade {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
 }
 
 .gallery-img:hover {

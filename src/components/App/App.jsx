@@ -3,14 +3,13 @@ import fetchCats from "../../services/CatService.mjs";
 import "./App.css";
 import CatButton from "../CatButton/CatButton";
 import Gallery from "../Gallery/Gallery";
-import preloadImage from "../preloadImage.mjs";
 import Modal from "../Modal/Modal";
+import GalleryProvider from "../../Contexts/GalleryContextProvider.jsx";
 
-const columns = {
-  300: 3,
-  0: 2,
-};
-
+const breakPoints = [
+  [400, 3],
+  [0, 2],
+];
 function App() {
   const [loading, setLoading] = useState(false);
   const [cats, setCats] = useState([]);
@@ -36,7 +35,6 @@ function App() {
     newCats.sort((l, r) => r.height * r.width - l.height * r.width);
 
     const bestCats = newCats.slice(0, 6);
-    await Promise.all(bestCats.map((cat) => preloadImage(cat)));
 
     setCats(
       bestCats.map((cat, i) => {
@@ -63,12 +61,14 @@ function App() {
         images={cats}
         close={modalTurnOff}
       />
-      <Gallery columnsAmount={columns} images={cats}></Gallery>
-      <CatButton
-        onClick={() => getCats()}
-        loading={loading}
-        message={"Refresh Cats"}
-      />
+      <GalleryProvider images={cats} breakPoints={breakPoints}>
+        <Gallery />
+        <CatButton
+          onClick={getCats}
+          loading={loading}
+          message={"Refresh Cats"}
+        />
+      </GalleryProvider>
     </>
   );
 }

@@ -7,27 +7,14 @@
   flex-direction: row;
 }
 
+.gallery-container {
+  width: 100vw;
+  height: 100vh;
+}
+
 .column {
   display: flex;
   height: 100%;
-  flex: 50%;
+  width: 100%;
   flex-direction: column;
-}
-
-@keyframes fadein {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
-@keyframes fadeout {
-  from {
-    opacity: 1;
-  }
-  to {
-    opacity: 0;
-  }
 }
